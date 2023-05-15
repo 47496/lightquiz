@@ -5,22 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/form.css">
     <title>Lightquizz</title>
 </head>
 <body>
     <header class="navbar">
         <!--Navbar-->
         <ul class="navbar">
-            <h4 id="player">Guest mode</h4>
             <h1>Lightquizz</h1>
-            <li class="navbar" style="display: none;"><button id="logOut" class="button">Log out</button></li>
-            <li class="navbar"><a href="pages/login" class="button">Log in</a></li>
         </ul>
     </header>
     <main>
-        <div id="leaderboard"></div>
-        <br>
-        <a href="pages/quizz" class="button">Play</a>
+        <form>
+            <label for="email">Email address:</label>
+            <input type="text" id="email" class="input"><br><br>       
+            <label for="password">Password:</label>
+            <input type="text" id="password" class="input"><br><br>  
+            <a href="pages/Categories.html">Categories</a>
+        </form>
     </main>
     <footer class="footer">
         <ul clasS="footer">
@@ -29,4 +31,5 @@
         </ul>
     </footer>
 </body>
-</html>
+</html><?php
+?>
