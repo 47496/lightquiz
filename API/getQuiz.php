@@ -2,26 +2,33 @@
 
 declare(strict_types=1);
 
+require_once "./functions.php";
+
+try {
 // connect to database
-$dsn = 'mysql:dbname=lightquiz;host=localhost';$dbUser='root';$dbPassword='';
-$db = new PDO($dsn, $dbUser, $dbPassword);
+$db=connectDB();
 
 
 // Get all the questions for the quiz in a random order
-$stmt = $db->query('SELECT id, model, picture FROM quiz ORDER BY RAND()');
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows as an associative array
+$sql="SELECT id, model, picture FROM quiz ORDER BY RAND()";
+$stmt = $db->query($sql);
+
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Put the results in an array
 $retur = [];
-foreach ($result as $row) {
-    $post = new stdClass();
-    $post->id = $row['id'];
-    $post->model = $row['model'];
-    $post->picture = $row['picture'];
+foreach ($rows as $post) {
     $retur[] = $post;
 }
 
 // Format the quizzes as JSON and send back to the client
-header('Content-Type: application/json');
-echo json_encode($retur);
+sendJSON($retur);
+
+} catch (PDOException $e) {
+    // Handle any database-related errors
+    echo "Database Error: " . $e->getMessage();
+} catch (Exception $e) {
+    // Handle any other errors
+    echo "Error: " . $e->getMessage();
+}
 ?>
