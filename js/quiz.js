@@ -7,7 +7,7 @@ window.onload = function(){
 
 
 function getQuiz(){   
-    fetch(serverurl+ "getQuiz")
+    fetch(serverurl + "getQuiz")
     .then(function(response){
         if(response.status==200){
             return response.json();
@@ -19,7 +19,7 @@ function getQuiz(){
 }
 
 function picture(data){
-    let picture = data.picture;
-    img.setAttribute('picture', picture);
+    let picture = data[0].picture;
+    document.getElementById("picture").src=picture;
 }
 //*** document.getElementById("randomCitat").onclick=function () { getCitat() } */
