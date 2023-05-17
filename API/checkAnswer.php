@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once "./functions.php";
 
 try {
+
 // Check in(put data and clean
 // Control method
 if($_SERVER['REQUEST_METHOD']!=='POST'){
@@ -24,25 +25,24 @@ $picture=filter_input(INPUT_POST, 'picture', FILTER_SANITIZE_SPECIAL_CHARS);
 if(!isset($picture) || mb_strlen($picture)>50) {
     $error=new stdClass();
     $error->message=["Bad input", "Picture is formated badly"];
-    sendJSON($error, 400);
+    sendJSON($error, 400); 
 }
-    
+
 // connect to database
 $db=connectDB();
 
-
-// Inserts quiz into the table
-$sql="INSERT INTO quiz (model, picture) VALUES (:model,:picture)";
+// Get all the questions for the quiz in a random order
+$sql="SELECT model FROM quiz WHERE model = :model AND picture = :picture;";
 $stmt = $db->prepare($sql);
-
+$stmt->execute(['model'=>$model, 'picture'=>$picture]);
+$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Send back answer
-if($stmt->execute(['model'=>$model, 'picture'=>$picture])){
-    $id=$db->lastInsertId();
-    sendJSON($id);
+if(!$answer==""){
+    $out=true;
+    sendJSON($out, 200);
 } else {
-    $error=new stdClass();
-    $error->message=["Cant execute", "IDK man"];
-    sendJSON($error, 400);
+    $out=false;
+    sendJSON($out, 200);
 }
 
 } catch (PDOException $e) {

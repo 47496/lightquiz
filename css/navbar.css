@@ -64,8 +64,14 @@ main {
   padding: 20px;
   margin-bottom: 60px; /* Adjust this value based on the footer height */
 }
-  
-main .button {
+
+.button.red {
+  background-color: red;
+}
+.button.green {
+  background-color: green;
+}
+.button {
   display: inline-block;
   padding: 10px 20px;
   background-color: #333;
@@ -74,13 +80,10 @@ main .button {
   font-size: 16px;
   border-radius: 4px;
   margin-top: 20px;
-}
-  
-main .button:hover {
-  background-color: #555;
+  transition: background-color 1s;
 }
 
-#picture {
+.picture {
   max-width: 80vw;
   max-height: 80vh;
 }
