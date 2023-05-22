@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <script src="js/index.js"></script>
+    <script src="../js/user.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/form.css">
     <title>Lightquizz</title>
@@ -12,16 +12,20 @@
     <header class="navbar">
         <!--Navbar-->
         <ul class="navbar">
-            <h1>Lightquizz</h1>
+            <h1><a class="tittle" href="../index.html">Lightquizz</a></h1>
         </ul>
     </header>
     <main>
-        <form>
+        <h2>Sign up</h2>
+        <form id="signUpForm" name="signUpForm" action="" method="POST">
             <label for="email">Email address:</label>
             <input type="text" id="email" class="input"><br><br>       
             <label for="password">Password:</label>
             <input type="text" id="password" class="input"><br><br>  
-            <a href="pages/Categories.html">Categories</a>
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="input"><br><br>  
+            <a href="login.html">Already have an account? click here to Log in.</a><br><br>  
+            <input type="submit" id="submit" value="Create account">
         </form>
     </main>
     <footer class="footer">
@@ -31,5 +35,4 @@
         </ul>
     </footer>
 </body>
-</html><?php
-?>
+</html>

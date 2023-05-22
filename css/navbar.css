@@ -95,3 +95,8 @@ main {
   column-gap: 10px;
   row-gap: 10px;
 }
+
+.tittle {
+  color: inherit;
+  text-decoration: none; /* no underline */
+}

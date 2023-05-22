@@ -3,7 +3,7 @@
 <head>
     <script src="js/index.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0">
     <link rel="stylesheet" href="css/navbar.css">
     <title>Lightquizz</title>
 </head>
@@ -12,9 +12,11 @@
         <!--Navbar-->
         <ul class="navbar">
             <h4 id="player">Guest mode</h4>
-            <h1>Lightquizz</h1>
-            <li class="navbar" style="display: none;"><button id="logOut" class="button">Log out</button></li>
-            <li class="navbar"><a href="pages/login" class="button">Log in</a></li>
+            <h1><a class="tittle" href="index.html">Lightquizz</a></h1>
+            <li class="navbar" >
+            <button id="adminView" style="display: none;" class="button">Admin</button>
+            <button id="logOut" style="display: none;" class="button">Log out</button>
+            <a id="logIn" href="pages/login.html" class="button">Log in</a></li>
         </ul>
     </header>
     <main>

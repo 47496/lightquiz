@@ -16,14 +16,13 @@ function getQuiz(){
     })
     .then(function(data){
         quizData = data; // Store the quiz data in the global variable
-        quiz(data);
+        quiz(quizData);
     })
 }
 
 function quiz(data) {
     let models = [];
     let correctModel = data[score].model;
-    let correctId = data[score].id;
 
     // Set the picture source and correct answer
     document.getElementById("picture").src = data[score].picture;
@@ -34,9 +33,8 @@ function quiz(data) {
     while (models.length < 4) {
       let randomIndex = Math.floor(Math.random() * data.length);
       let randomModel = data[randomIndex].model;
-      let randomId = data[randomIndex].id;
   
-      if (!models.includes(randomModel) && randomId !== correctId) {
+      if (!models.includes(randomModel) && randomModel !== correctModel) {
         models.push(randomModel);
       }
     }
@@ -45,6 +43,7 @@ function quiz(data) {
     // Create buttons for the models
     let buttonsContainer = document.getElementById("grid");
     buttonsContainer.innerHTML = "";
+    models= shuffle(models);
   
     for (let i = 0; i < models.length; i++) {
       let button = document.createElement("button");
@@ -59,8 +58,6 @@ function quiz(data) {
 function checkAnswer(event) {
     let selectedModel = event.target.innerHTML;
     let selectedPicture = quizData[score].picture;
-    console.log(selectedModel);
-    console.log(selectedPicture);
     
     // Creates a formdata with all the data that gets sent to the server
     let FD = new FormData();
@@ -82,21 +79,30 @@ function checkAnswer(event) {
             // Correct answer
             let button = document.getElementById(selectedModel); // gets the pressed button
             score++;
+            let scoreText = document.getElementById("score");
+            scoreText.innerHTML = "score: " + score;
             // Perform additional actions for a correct answer
             button.classList.add("green"); // Add the "green" class
             setTimeout(function () {
-                window.location.href = "../index.html"; //will redirect to your blog page (an ex: blog.html)
-             }, 4000); //will call the function after 2 secs.         
+                if(typeof(quizData[score]?.model) == 'undefined'){
+                    console.log("congratz");
+                    alert("Du klarade av hela quizzen!");
+                    window.location = "../index.html";
+                } else {
+                    quiz(quizData);
+                }
+             }, 2000); //will call the function after 2 secs.
             } else {
+
                 // Wrong answer
             let wrongButton = document.getElementById(selectedModel); // gets the pressed button
-            wrongButton.classList.add("red"); // Add the "green" class
-            let rightButton = document.getElementById(quizData[score].model); // gets the pressed button
+            wrongButton.classList.add("red"); // Add the "red" class
+            let rightButton = document.getElementById(quizData[score].model); // gets the correct button
             rightButton.classList.add("green"); // Add the "green" class
                 // Perform additional actions for a wrong answer
             setTimeout(function () {
-                window.location.href = "../index.html"; //will redirect to your blog page (an ex: blog.html)
-             }, 4000); //will call the function after 2 secs.         
+                window.location.href = "../index.html"; //will redirect back to main screen
+             }, 2000); //will call the function after 2 secs.         
             }
     })
 }
