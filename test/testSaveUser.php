@@ -13,11 +13,11 @@ try {
 
     // wrong call type (GET)
     echo "<p class='info'>Test of wrong call type</p>";
-    userSavewrongMethod($ch);
+    methodGET($ch);
     
     // wrong Input parameters
     echo "<p class='info'>Test of no Input parameters type</p>";
-    userSavenoInput($ch);
+    noInputPOST($ch);
         
     // too long name
     echo "<p class='info'>Test of 20+ character name</p>";
@@ -54,19 +54,6 @@ function userSavenoInput($curlHandle) {
     }
 }
 
-function userSavewrongMethod($curlHandle) {
-    // make call and get return string
-    $jsonString = curl_exec($curlHandle);
-
-    // get status for call
-    $status = curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
-
-    if($status===405) {
-        echo "<p class='ok'> answer 405, gives expected answer</p>";
-    } else {
-        echo "<p class='error'> status=$status instead of expected answer 405 </p>";
-    }
-}
 
 function userSaveLongName($curlHandle) {
     // make call to POST instead of GET

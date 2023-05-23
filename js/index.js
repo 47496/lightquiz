@@ -36,11 +36,9 @@ document.getElementById("logIn").style.display = "none";
 let logOut = document.getElementById("logOut");
 logOut.addEventListener("click", logOutFunct);
 
-console.log(typeof document.getElementById("adminView"));
-if(parsedObject[0].admin == 1) {
-    if(typeof document.getElementById("adminView") != "undefined") {
+let admin = document.getElementById("adminView");
+if(parsedObject[0].admin == 1 && admin !== null) {
     document.getElementById("adminView").style.display = "initial";
-    }
 }
 };};
 
