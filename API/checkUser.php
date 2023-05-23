@@ -32,14 +32,17 @@ if(!isset($password) || mb_strlen($password)>50) {
 $db=connectDB();
 
 // Get all the questions for the quiz in a random order
-$sql="SELECT name, admin FROM user WHERE email = :email AND password = :password;";
+$sql="SELECT name, admin, password FROM user WHERE email = :email ;";
 $stmt = $db->prepare($sql);
-$stmt->execute(['email'=>$email, 'password'=>$password]);
-$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute(["email"=>$email]);
+$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Send back answer
-if(!$answer == ""){
-    sendJSON($answer);
+if($row && password_verify($password,  $row[0]["password"])){
+    // password correct
+    unset($row[0]["password"]); // Remove the 'password' field from the array
+    sendJSON($row);
 } else {
+    // password or email incorrect
     $error=new stdClass();
     $error->message=["email or password wrong"];
     sendJSON($error, 400);

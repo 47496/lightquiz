@@ -1,7 +1,7 @@
 /* Reset default styles */
 body {
-    margin: 0;
-  }  
+  margin: 0;
+}
 
 /* Reset default list styles */
 ul.navbar {
@@ -9,12 +9,28 @@ ul.navbar {
   padding: 0;
   margin: 0;
   width: 100%;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
 /* Navbar styles */
 header.navbar {
-  background-color: #333;    color: #fff;    padding: 10px;    display: flex;    align-items: center;  }    header.navbar h4 {    margin: 0;    font-size: 14px;  }    header.navbar h1 {    margin: 0;    font-size: 24px;  }    /* Navbar button styles */  header.navbar .button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+header.navbar h4 {
+  margin: 0;
+  font-size: 14px;
+}
+header.navbar h1 {
+  margin: 0;
+  font-size: 24px;
+}
+/* Navbar button styles */
+header.navbar .button,
+.button {
   padding: 8px 16px;
   background-color: #fff;
   color: #333;
@@ -25,7 +41,8 @@ header.navbar {
   cursor: pointer;
 }
 
-header.navbar .button:hover {
+header.navbar .button:hover,
+.button:hover {
   background-color: #eee;
 }
 
@@ -33,7 +50,7 @@ header.navbar ul.navbar {
   display: flex;
   align-items: center;
 }
-  
+
 /* Footer styles */
 footer.footer {
   background-color: #333;
@@ -44,21 +61,21 @@ footer.footer {
   left: 0;
   right: 0;
 }
-  
+
 ul.footer {
-  justify-content:space-between;
+  justify-content: space-between;
   width: 100%;
   display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-  
+
 footer.footer p {
   margin: 0;
   font-size: 14px;
 }
-  
+
 /* Additional styles for the content */
 main {
   padding: 20px;
@@ -71,13 +88,13 @@ main {
 .button.green {
   background-color: green;
 }
-.button {
-  display: inline-block;
+.button,
+a.button {
   padding: 10px 20px;
   background-color: #333;
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 16px; /* Adjust the font size as needed */
   border-radius: 4px;
   margin-top: 20px;
   transition: background-color 1s;
@@ -98,5 +115,5 @@ main {
 
 .tittle {
   color: inherit;
-  text-decoration: none; /* no underline */
+  text-decoration: inherit; /* no underline */
 }

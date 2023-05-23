@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
   let signUpForm = document.getElementById("signUpForm");
 
 if(loginForm != null){
-    console.log("test")
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -19,10 +18,6 @@ if(loginForm != null){
     if (email === "" || password === "") {
       alert("email and password are required");
     } else {
-      // perform operation with form input
-      console.log(
-        `This form has a email of ${email} and password of ${password}`
-      );
 
     // Sanitize email input
     email = email.trim(); // Remove leading and trailing whitespace
@@ -30,6 +25,10 @@ if(loginForm != null){
     // Sanitize password input
     password = password.trim(); // Remove leading and trailing whitespace
     password = password.replace(/</g, "&lt;").replace(/>/g, "&gt;"); // Replace "<" and ">" characters with HTML entities
+
+    console.log(
+      `This form has a email of ${email} and password of ${password}`
+    );
     
     login(email, password)
     }
@@ -50,10 +49,6 @@ if(signUpForm != null){
     if (email === "" || password === "" || name === "") {
       alert("email, password and name are required");
     } else {
-      // perform operation with form input
-      console.log(
-        `This form has a email of ${email} and password of ${password} and a name of ${name}`
-      );
 
     // Sanitize email and name input
     email = email.trim(); // Remove leading and trailing whitespace
@@ -62,6 +57,10 @@ if(signUpForm != null){
     // Sanitize password input
     password = password.trim(); // Remove leading and trailing whitespace
     password = password.replace(/</g, "&lt;").replace(/>/g, "&gt;"); // Replace "<" and ">" characters with HTML entities
+
+    console.log(
+      `This form has a email of ${email} and password of ${password} and a name of ${name}`
+    );
     
     signUp(email, password, name)
     }
@@ -84,12 +83,11 @@ function signUp(email, password, name) {
           alert("Coudnt create user");
         }
       }).then(function(data) {
-          window.location.href = "login.html"; //will redirect back to main screen
+        window.location.href = "login.html"; //will redirect back to main screen
       });
   }
 
 function login(email, password) {
-    console.log("test")
   let FD = new FormData();
   FD.append("email", email);
   FD.append("password", password);

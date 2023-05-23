@@ -1,6 +1,25 @@
 <?php
 
 declare(strict_types=1);
+function checkUsername($name){
+// connect to database
+$db=connectDB();
+
+// Get all the questions for the quiz in a random order
+$sql="SELECT name FROM user WHERE name = :name ;";
+$stmt = $db->prepare($sql);
+$stmt->execute(["name"=>$name]);
+$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Send back answer
+if(!$row == "") {
+if($row[0]["name"] == $name){
+    return false;
+} else {
+    return true;
+}} else {
+    return true;
+}
+}
 
 function connectDB():PDO {
     static $db=null;

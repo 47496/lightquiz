@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-
 require_once "./functions.php";
 
 try {
@@ -16,9 +15,9 @@ if($_SERVER['REQUEST_METHOD']!=='POST'){
 
 // Read input data
 $name=filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
-if(!isset($name) || mb_strlen($name)>50) {
+if(!isset($name) || mb_strlen($name)>20 || !checkUsername($name)) {
     $error=new stdClass();
-    $error->message=["Bad input", "name is formated badly"];
+    $error->message=["Bad input", "name is formated badly or is already in use"];
     sendJSON($error, 400); 
 }
 $email=filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -33,6 +32,7 @@ if(!isset($password) || mb_strlen($password)>50) {
     $error->message=["Bad input", "password is formated badly"];
     sendJSON($error, 400); 
 }
+$password=password_hash($password, PASSWORD_DEFAULT);
 
 // connect to database
 $db=connectDB();
