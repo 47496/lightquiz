@@ -9,7 +9,7 @@ try {
 // Control method
 if($_SERVER['REQUEST_METHOD']!=='POST'){
     $error=new stdClass();
-    $error->message=["Wrong method", "site should get called my POST"];
+    $error->message=["Wrong method", "site should get called by POST"];
     sendJSON($error, 405);
 }
 
@@ -41,7 +41,7 @@ if($stmt->execute(['model'=>$model, 'picture'=>$picture])){
     sendJSON($id);
 } else {
     $error=new stdClass();
-    $error->message=["Cant execute", "IDK man"];
+    $error->message=["Cant execute"];
     sendJSON($error, 400);
 }
 

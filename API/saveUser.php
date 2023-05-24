@@ -9,7 +9,7 @@ try {
 // Control method
 if($_SERVER['REQUEST_METHOD']!=='POST'){
     $error=new stdClass();
-    $error->message=["Wrong method", "site should get called my POST"];
+    $error->message=["Wrong method", "site should get called by POST"];
     sendJSON($error, 405);
 }
 

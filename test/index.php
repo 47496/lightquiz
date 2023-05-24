@@ -31,7 +31,7 @@ require_once "commonTest.php";
     <h2>Save Quiz</h2>
     <?php require_once "testSaveQuiz.php" ?>
     <h2>Update Quiz</h2>
-    <?php require_once "testUpdateQuiz.php" ?>
+    <?php require_once "testEditQuiz.php" ?>
 </body>
 
 </html>

@@ -1,0 +1,23 @@
+.picture {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: 100%;
+}
+
+.icon {
+    text-align: center;
+}
+
+.td_picture {
+    width: 25%;
+}
+
+#list {
+    width: 40%;
+}
+
+#createEdit {
+    width: 40%;
+}

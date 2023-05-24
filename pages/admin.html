@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/admin.css">
     <title>Lightquizz</title>
 </head>
 <body>
@@ -15,20 +16,15 @@
             <h4 id="player">Guest mode</h4>
             <h1><a class="tittle" href="../index.html">Lightquizz</a></h1>
             <li class="navbar" >
-            <a id="logOut" href="../index.html" style="display: none;" class="button">Log out</a>
-            <a id="logIn" href="login.html" class="button">Log in</a></li>
+            <a id="logOut" href="../index.html"  class="button">Log out</a>
+            <a id="logIn" href="login.html" style="display: none;" class="button">Log in</a></li>
         </ul>
     </header>
     <main>
-        <!--quiz list-->
-        <div id="list">
-            <h2>Quiz</h2>
-            <table id="quizList"></table>
-        </div>
-    
-        <!--Create new/edit category-->
+
+        <!--Create new/edit quiz-->
         <div id="createEdit">
-            <h2 id="categoryTitle">New Quiz</h2>
+            <h2 id="quizTitle">New Quiz</h2>
             <input type="text" id="modelInput" class="forminput">
             <input type="file" id="pictureInput" class="forminput">
             <br> <br>
@@ -36,6 +32,14 @@
             <button id="saveEdit" class="button">Save</button>
             <button id="goBack" class="button">Go back</button>
         </div>
+
+        <!--quiz list-->
+        <div id="list">
+            <h2>Quiz</h2>
+            <table id="quizList"></table>
+        </div>
+    
+
     </main>
     <footer class="footer">
         <ul clasS="footer">

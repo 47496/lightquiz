@@ -1,9 +1,7 @@
-/* Reset default styles */
 body {
   margin: 0;
 }
 
-/* Reset default list styles */
 ul.navbar {
   list-style: none;
   padding: 0;
@@ -12,7 +10,6 @@ ul.navbar {
   justify-content: space-between;
 }
 
-/* Navbar styles */
 header.navbar {
   background-color: #333;
   color: #fff;
@@ -28,7 +25,7 @@ header.navbar h1 {
   margin: 0;
   font-size: 24px;
 }
-/* Navbar button styles */
+
 header.navbar .button,
 .button {
   padding: 8px 16px;
@@ -41,9 +38,11 @@ header.navbar .button,
   cursor: pointer;
 }
 
-header.navbar .button:hover,
-.button:hover {
+header.navbar .button:hover{
   background-color: #eee;
+}
+.button:hover{
+  background-color: #515050;
 }
 
 header.navbar ul.navbar {
@@ -51,7 +50,6 @@ header.navbar ul.navbar {
   align-items: center;
 }
 
-/* Footer styles */
 footer.footer {
   background-color: #333;
   color: #fff;
@@ -76,10 +74,13 @@ footer.footer p {
   font-size: 14px;
 }
 
-/* Additional styles for the content */
 main {
   padding: 20px;
-  margin-bottom: 60px; /* Adjust this value based on the footer height */
+  margin-bottom: 60px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .button.red {
@@ -94,7 +95,7 @@ a.button {
   background-color: #333;
   color: #fff;
   text-decoration: none;
-  font-size: 16px; /* Adjust the font size as needed */
+  font-size: 16px;
   border-radius: 4px;
   margin-top: 20px;
   transition: background-color 1s;
@@ -115,5 +116,5 @@ a.button {
 
 .tittle {
   color: inherit;
-  text-decoration: inherit; /* no underline */
+  text-decoration: inherit;
 }
