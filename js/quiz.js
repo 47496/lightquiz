@@ -24,8 +24,8 @@ function quiz(data) {
     let models = [];
     let correctModel = data[score].model;
 
-    // Set the picture source and correct answer
-    document.getElementById("picture").src = data[score].picture;
+    let picture = document.getElementById('picture');
+    picture.src = 'data:image/jpeg;base64,' + data[score].picture;
   
     models.push(correctModel);
   
@@ -57,12 +57,12 @@ function quiz(data) {
 
 function checkAnswer(event) {
     let selectedModel = event.target.innerHTML;
-    let selectedPicture = quizData[score].picture;
+    let id = quizData[score].id;
     
     // Creates a formdata with all the data that gets sent to the server
     let FD = new FormData();
     FD.append("model", selectedModel);
-    FD.append("picture", selectedPicture);
+    FD.append("id", id);
     fetch(serverurl+ 'checkAnswer/',
 {
     method: 'POST',
@@ -72,7 +72,7 @@ function checkAnswer(event) {
     if(response.status==200){
         return response.json();
     } else {
-        alert("Error, could not save task")
+        alert("Error, could not check answer")
     }
     }) .then(function(data){
         if (data === true) {

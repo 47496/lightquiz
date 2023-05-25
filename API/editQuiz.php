@@ -20,6 +20,7 @@ if(!isset($model) || mb_strlen($model)>50) {
     $error->message=["Bad input", "model is formated badly"];
     sendJSON($error, 400);
 }
+
 $picture = $_FILES['picture'];
 if (!isset($picture) || $picture['error'] !== UPLOAD_ERR_OK) {
     $error=new stdClass();
@@ -27,7 +28,6 @@ if (!isset($picture) || $picture['error'] !== UPLOAD_ERR_OK) {
     sendJSON($error, 400);
 };
 $picture = file_get_contents($picture['tmp_name']);
-var_dump($picture);
 
 $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT); // Retrieve the 'id' value from POST
 $id = (int) $id;

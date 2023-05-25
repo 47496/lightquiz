@@ -21,20 +21,18 @@ if(!isset($model) || mb_strlen($model)>50) {
     $error->message=["Bad input", "model is formated badly"];
     sendJSON($error, 400);
 }
-$picture=filter_input(INPUT_POST, 'picture', FILTER_SANITIZE_SPECIAL_CHARS);
-if(!isset($picture) || mb_strlen($picture)>50) {
-    $error=new stdClass();
-    $error->message=["Bad input", "Picture is formated badly"];
-    sendJSON($error, 400); 
-}
+
+
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT); // Retrieve the 'id' value from POST
+$id = (int) $id;
 
 // connect to database
 $db=connectDB();
 
 // Get all the questions for the quiz in a random order
-$sql="SELECT model FROM quiz WHERE model = :model AND picture = :picture;";
+$sql="SELECT model FROM quiz WHERE model = :model AND id = :id;";
 $stmt = $db->prepare($sql);
-$stmt->execute(['model'=>$model, 'picture'=>$picture]);
+$stmt->execute(['model'=>$model, 'id'=>$id]);
 $answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Send back answer
 if(!$answer==""){

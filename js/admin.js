@@ -91,8 +91,8 @@ function appendRows(data) {
     td_edit.appendChild(editIcon);
     td_edit.classList.add("icon");
     td_edit.onclick = function() {
-        let picture = 'data:image/jpeg;base64,' + data[i].picture;
-      editForm(data[i].id, data[i].model, picture)
+    let picture = 'data:image/jpeg;base64,' + data[i].picture;
+    editForm(data[i].id, data[i].model, picture)
     }
 
     // Delete
@@ -158,8 +158,7 @@ function deleteQuiz(id) {
 // Edit Quiz
 function editQuiz(id) {
   let modelInput = document.getElementById("modelInput").value;
-  let pictureInput = document.getElementById("pictureInput").value;
-  console.log(id);
+  let pictureInput = document.getElementById("pictureInput").files[0];
   let FD = new FormData(); // Creates a formdata with the data for editing a Quiz
   FD.append("model", modelInput);
   FD.append("picture", pictureInput);
