@@ -1,8 +1,8 @@
 <?php
 
 declare(strict_types=1);
-
 require_once "./functions.php";
+header('Content-Type: application/json');
 
 try {
 // connect to database
@@ -14,10 +14,10 @@ $sql="SELECT id, model, picture FROM quiz ORDER BY RAND()";
 $stmt = $db->query($sql);
 
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Put the results in an array
 $retur = [];
+// Put the results in an array
 foreach ($rows as $post) {
+    $post['picture'] = base64_encode($post['picture']);
     $retur[] = $post;
 }
 

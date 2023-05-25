@@ -20,13 +20,14 @@ if(!isset($model) || mb_strlen($model)>50) {
     $error->message=["Bad input", "model is formated badly"];
     sendJSON($error, 400);
 }
-$picture=filter_input(INPUT_POST, 'picture', FILTER_SANITIZE_SPECIAL_CHARS);
-if(!isset($picture) || mb_strlen($picture)>50) {
+$picture = $_FILES['picture'];
+if (!isset($picture) || $picture['error'] !== UPLOAD_ERR_OK) {
     $error=new stdClass();
-    $error->message=["Bad input", "Picture is formated badly"];
+    $error->message=["Bad input", "picture is formated badly"];
     sendJSON($error, 400);
-}
-    
+};
+
+$picture = file_get_contents($picture['tmp_name']);
 // connect to database
 $db=connectDB();
 
@@ -47,9 +48,11 @@ if($stmt->execute(['model'=>$model, 'picture'=>$picture])){
 
 } catch (PDOException $e) {
     // Handle any database-related errors
-    echo "Database Error: " . $e->getMessage();
+    $error->message=["Database Error: " . $e->getMessage()];
+    sendJSON($error, 400);
 } catch (Exception $e) {
     // Handle any other errors
-    echo "Error: " . $e->getMessage();
+    $error->message=["Error: " . $e->getMessage()];
+    sendJSON($error, 400);
 }
 ?>
