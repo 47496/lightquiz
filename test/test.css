@@ -2,7 +2,9 @@
     font-family: Arial, Helvetica, sans-serif;
     color: blue;
 }
-
+.testContainer {
+    background-color: #CCCCCC;
+}
 .ok {
     background-color: lightgreen;
     color: darkgreen;

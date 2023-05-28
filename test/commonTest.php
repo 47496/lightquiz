@@ -31,3 +31,18 @@ function noInputPOST($curlHandle) {
         echo "<p class='error'> status=$status instead of expected answer 400 </p>";
     }
 }
+
+function testTemporaryQuiz() {
+    $db = connectDB();
+    $model = "modelTest";
+    $picture = "pictureTest";
+    $sql="INSERT INTO quiz (model, picture) VALUES (:model,:picture)";
+    $stmt = $db->prepare($sql);
+    if($stmt->execute(['model'=>$model, 'picture'=>$picture])) {
+        echo "<p class='ok'> answer 200, created a temporary quiz</p>";
+        $id=$db->lastInsertId();
+        return $id;
+    } else {
+        echo "<p class='error'> status=$status instead of expected answer 200 </p>";
+    }
+}

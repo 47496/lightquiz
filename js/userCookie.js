@@ -8,7 +8,6 @@ window.onload = function(){
 
 
 function onstart(){   
-
 if(document.cookie != ""){
 // Read the value of a cookie
 let cookieName = "session";

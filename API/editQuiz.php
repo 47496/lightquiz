@@ -20,7 +20,10 @@ if(!isset($model) || mb_strlen($model)>50) {
     $error->message=["Bad input", "model is formated badly"];
     sendJSON($error, 400);
 }
-
+if (!isset($_FILES['picture'])){
+    $error=new stdClass();
+    $error->message=["Bad input", "picture needs to be a file"];
+}
 $picture = $_FILES['picture'];
 if (!isset($picture) || $picture['error'] !== UPLOAD_ERR_OK) {
     $error=new stdClass();

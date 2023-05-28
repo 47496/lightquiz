@@ -20,7 +20,6 @@ if(!isset($id) || mb_strlen($id)>50) {
     $error->message=["Bad input", "id is formated badly"];
     sendJSON($error, 400);
 }
-$id = (int) $id;
 // connect to database
 $db=connectDB();
 
