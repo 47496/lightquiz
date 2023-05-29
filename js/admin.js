@@ -33,8 +33,6 @@ function onLoadForm() {
 }
 
 function appendRows(data) {
-  for (let i = 0; data.length > i; i++) {
-    }
 
   let list = document.getElementById('quizList');
   list.innerHTML = "";
@@ -133,7 +131,6 @@ function saveQuiz() {
       }
     })
   resetForm();
-  getQuiz();
 }
 
 // Deletes quiz with the same id
@@ -152,7 +149,6 @@ function deleteQuiz(id) {
       }
     })
   resetForm();
-  getQuiz();
 }
 
 // Edit Quiz
@@ -175,12 +171,13 @@ function editQuiz(id) {
       }
     })
   resetForm();
-  getQuiz();
 }
 
 // Resets back to the original form
 function resetForm() {
-  getQuiz();
+  setTimeout(function () {
+    getQuiz();
+ }, 200);
   document.getElementById("pictureInput").value = null;
   document.getElementById("saveEdit").style.display = "none";
   document.getElementById("goBack").style.display = "none";

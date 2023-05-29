@@ -34,7 +34,6 @@ try {
 }
 
 function quizSaveOk($curlHandle) {
-
     // connect to DB and make it possible to undo changes
     $db = connectDB();
 
@@ -50,7 +49,6 @@ function quizSaveOk($curlHandle) {
 
     // make call and get return string
     $jsonString = curl_exec($curlHandle);
-
     // get status for call
     $status = curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
 
@@ -60,5 +58,4 @@ function quizSaveOk($curlHandle) {
     } else {
         echo "<p class='error'> status=$status instead of expected answer 200 </p>";
     }
-
 }

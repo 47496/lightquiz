@@ -5,6 +5,12 @@ require_once "./functions.php";
 header('Content-Type: application/json');
 
 try {
+if($_SERVER['REQUEST_METHOD']!=='GET'){
+    $error=new stdClass();
+    $error->message=["Wrong method", "site should get called by GET"];
+    sendJSON($error, 405);
+}
+
 // connect to database
 $db=connectDB();
 

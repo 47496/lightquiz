@@ -2,7 +2,7 @@
 serverurl="http://localhost/ovningar/Lightquiz/API/"
 let score=0;
 let parsedObject = "";
-
+let playername = "";
 window.onload = function(){
     getQuiz();
     onstart();
@@ -88,9 +88,13 @@ function checkAnswer(event) {
             button.classList.add("green"); // Add the "green" class
             setTimeout(function () {
                 if(typeof(quizData[score]?.model) == 'undefined'){
-                    console.log("congratz");
-                    alert("Du klarade av hela quizzen!");
-                    window.location = "../index.html";
+                    if(typeof parsedObject !== 'undefined' && typeof parsedObject[0] !== 'undefined' && parsedObject[0].name !== undefined){
+                    if(leaderboardScore <= score){
+                        saveNewLeaderboard(score);
+                    }}
+                    
+                    alert("Du klarade av hela quizzen!"); //alert will do the command after ok button pressed
+                    window.location = "../index.html"; //will redirect back to index site  
                 } else {
                     quiz(quizData);
                 }
@@ -102,16 +106,21 @@ function checkAnswer(event) {
             wrongButton.classList.add("red"); // Add the "red" class
             let rightButton = document.getElementById(quizData[score].model); // gets the correct button
             rightButton.classList.add("green"); // Add the "green" class
-                // Perform additional actions for a wrong answer
+            // Perform additional actions for a wrong answer
+            if(typeof parsedObject !== 'undefined' && typeof parsedObject[0] !== 'undefined' && parsedObject[0].name !== undefined){
+                if(leaderboardScore <= score){
+                    saveNewLeaderboard(score);
+                }}
             setTimeout(function () {
-                window.location.href = "../index.html"; //will redirect back to main screen
-             }, 2000); //will call the function after 2 secs.         
+                alert(`Your score is ${score}`); //alert will do the command after ok button pressed
+                window.location.href = "../index.html"; //will redirect back to index site  
+             }, 2000); //will call the function after 2 secs.
             }
     })
 }
   
 
-function onstart(){   
+function onstart(){
 if(document.cookie != ""){
     // Read the value of a cookie
     let cookieName = "session";
@@ -127,11 +136,29 @@ if(document.cookie != ""){
         if (name === cookieName) {
             let decodedValue = decodeURIComponent(value);
             parsedObject = JSON.parse(decodedValue);
+    
+    // Read the value of a cookie
+    let leaderboard = "leaderboard";
+    // Read the cookie and parse the string back to an object
+    let cookieString = document.cookie;
+    let cookies = cookieString.split(";");
+
+    cookies.forEach(function(cookie) {
+    let cookiePair = cookie.split("=");
+    let name = cookiePair[0].trim();
+    let value = cookiePair[1].trim();
+
+    if (name === leaderboard) {
+        let decodedValue = decodeURIComponent(value);
+        leaderboardScore = JSON.parse(decodedValue);
+    }})
 }})
 
 // Edits the player name
+if(typeof parsedObject !== 'undefined' && typeof parsedObject[0] !== 'undefined' && parsedObject[0].name !== undefined){
+playername = parsedObject[0].name;
 let player = document.getElementById("player");
-player.innerHTML = parsedObject[0].name;
+player.innerHTML = playername;
 
 document.getElementById("logOut").style.display = "initial";
 document.getElementById("logIn").style.display = "none";
@@ -142,7 +169,7 @@ logOut.addEventListener("click", logOutFunct);
 let admin = document.getElementById("adminView");
 if(parsedObject[0].admin == 1 && admin !== null) {
     document.getElementById("adminView").style.display = "initial";
-}
+}}
 };};
     
 function logOutFunct(){
@@ -161,6 +188,23 @@ var cookieString = cookieName + "=; expires=" + expirationDate.toUTCString() + "
 document.cookie = cookieString;
     // Refresh the page
     location.reload();
+}
+
+function saveNewLeaderboard(score){
+    let FD = new FormData(); // Creates a formdata with the data for creating a new model
+    FD.append("name", playername);
+    FD.append("score", score);
+    fetch(serverurl + 'saveLeaderboard', {
+        method: 'POST',
+        body: FD
+      })
+      .then(function(response) {
+        if (response.status == 200) {
+          return response.json();
+        } else {
+          alert("Error, could not save new leaderboard")
+        }
+      })
 }
 
 function shuffle(array) {

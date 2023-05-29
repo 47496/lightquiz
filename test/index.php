@@ -22,14 +22,14 @@ require_once "commonTest.php";
         <h2>Save User</h2>
         <?php require_once "testSaveUser.php" ?>
     </div>
-    <!--<div class="testContainer">
+    <div class="testContainer">
         <h2>Get Leaderboard</h2>
         <?php require_once "testGetLeaderboard.php" ?>
     </div>
     <div class="testContainer">
         <h2>Save Leaderboard</h2>
         <?php require_once "testSaveLeaderboard.php" ?>
-    </div>-->
+    </div>
     <div class="testContainer">
         <h2>Get Quiz</h2>
         <?php require_once "testGetQuiz.php" ?>
