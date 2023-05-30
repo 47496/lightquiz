@@ -1,21 +1,21 @@
 #leaderboard {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  margin-top: 50px; /* Adjust the margin-top as needed */
+  align-items: center;
+  margin-top: 50px;
 }
 
 #leaderboard table {
   width: 100%;
-  border-collapse: collapse; /* Remove spacing between cells */
+  border-collapse: collapse;
 }
 
 #leaderboard th,
 #leaderboard td {
   padding: 8px;
-  border: 1px solid #ddd; /* Add border to cells */
-  width: 100px; /* Adjust the width as needed */
-  text-align: center; /* Center the content horizontally */
+  border: 1px solid #ddd;
+  width: 100px;
+  text-align: center;
 }
 
 #leaderboard th {

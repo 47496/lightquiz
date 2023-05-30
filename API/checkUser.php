@@ -31,7 +31,6 @@ if(!isset($password) || mb_strlen($password)>50) {
 // connect to database
 $db=connectDB();
 
-// Get all the questions for the quiz in a random order
 $sql="SELECT name, admin, password FROM user WHERE email = :email ;";
 $stmt = $db->prepare($sql);
 $stmt->execute(["email"=>$email]);

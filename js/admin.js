@@ -116,8 +116,7 @@ function appendRows(data) {
 // Save new Quiz
 function saveQuiz() {
   let modelInput = document.getElementById("modelInput").value;
-  //cleaning up the image file 
-  let pictureInput = document.getElementById("pictureInput").files[0];
+  let pictureInput = document.getElementById("pictureInput").files[0];//gathers the data from modelinput and pictureinput
   let FD = new FormData(); // Creates a formdata with the data for creating a new model
   FD.append("model", modelInput);
   FD.append("picture", pictureInput);

@@ -20,7 +20,7 @@ if(!isset($name) || mb_strlen($name)>20 || !checkUsername($name)) {
     $error->message=["Bad input", "name is formated badly or is already in use"];
     sendJSON($error, 400); 
 }
-$email=filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+$email=filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 if(!isset($email) || mb_strlen($email)>50) {
     $error=new stdClass();
     $error->message=["Bad input", "email is formated badly"];
